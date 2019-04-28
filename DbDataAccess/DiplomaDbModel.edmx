@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DiplomaDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="APP_User">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="DateOfBirth" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="APP_VacationLeave">
+          <Key>
+            <PropertyRef Name="ID_VacationLeave" />
+          </Key>
+          <Property Name="ID_VacationLeave" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ID_User" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateFrom" Type="date" Nullable="false" />
+          <Property Name="DateTo" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="DiplomaDbModelStoreContainer">
+          <EntitySet Name="APP_User" EntityType="Self.APP_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="APP_VacationLeave" EntityType="Self.APP_VacationLeave" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DiplomaDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DiplomaDbEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="APP_User" EntityType="DiplomaDbModel.APP_User" />
+          <EntitySet Name="APP_VacationLeave" EntityType="DiplomaDbModel.APP_VacationLeave" />
+        </EntityContainer>
+        <EntityType Name="APP_User">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="7" />
+        </EntityType>
+        <EntityType Name="APP_VacationLeave">
+          <Key>
+            <PropertyRef Name="ID_VacationLeave" />
+          </Key>
+          <Property Name="ID_VacationLeave" Type="Guid" Nullable="false" />
+          <Property Name="ID_User" Type="Guid" Nullable="false" />
+          <Property Name="DateFrom" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateTo" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <Association Name="FK__APP_Vacat__ID_Us__398D8EEE">
+          <End Type="DiplomaDbModel.APP_User" Role="APP_User" Multiplicity="1" />
+          <End Type="DiplomaDbModel.APP_VacationLeave" Role="APP_VacationLeave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APP_User">
+              <PropertyRef Name="ID_User" />
+            </Principal>
+            <Dependent Role="APP_VacationLeave">
+              <PropertyRef Name="ID_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DiplomaDbModelStoreContainer" CdmEntityContainer="DiplomaDbEntities" >
+          <EntitySetMapping Name="APP_User">
+            <EntityTypeMapping TypeName="DiplomaDbModel.APP_User">
+              <MappingFragment StoreEntitySet="APP_User">
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="APP_VacationLeave">
+            <EntityTypeMapping TypeName="DiplomaDbModel.APP_VacationLeave">
+              <MappingFragment StoreEntitySet="APP_VacationLeave">
+                <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+                <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="ID_VacationLeave" ColumnName="ID_VacationLeave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
