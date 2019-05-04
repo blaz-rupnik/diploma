@@ -8,11 +8,13 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Diploma_serverless.Models;
 
 namespace Diploma_serverless.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class VacationLeavesController : ApiController
     {
         private UsersServiceContext db = new UsersServiceContext();
@@ -75,10 +77,7 @@ namespace Diploma_serverless.Controllers
         [ResponseType(typeof(VacationLeave))]
         public async Task<IHttpActionResult> PostVacationLeave(VacationLeave vacationLeave)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            vacationLeave.Id = Guid.NewGuid();
 
             db.VacationLeaves.Add(vacationLeave);
 

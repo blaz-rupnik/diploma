@@ -103,9 +103,15 @@ namespace Diploma_serverless.Controllers
         public async Task<IHttpActionResult> DeleteUser(Guid id)
         {
             User user = await db.Users.FindAsync(id);
+            VacationLeave vacationLeave = db.VacationLeaves.FirstOrDefault(x => x.UserId == id);
+
             if (user == null)
             {
                 return NotFound();
+
+            }else if (vacationLeave != null)
+            {
+                return BadRequest("User has active vacation leaves!");
             }
 
             db.Users.Remove(user);

@@ -20,6 +20,12 @@ namespace Diploma_serverless.Models
             this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer<UsersServiceContext>(null);
+            base.OnModelCreating(modelBuilder);
+        }
+
         public System.Data.Entity.DbSet<Diploma_serverless.Models.User> Users { get; set; }
 
         public System.Data.Entity.DbSet<Diploma_serverless.Models.VacationLeave> VacationLeaves { get; set; }
