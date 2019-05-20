@@ -10,7 +10,7 @@ namespace Diploma_serverless.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Diploma_serverless.Models.UsersServiceContext context)
