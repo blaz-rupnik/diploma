@@ -16,6 +16,8 @@ namespace Diploma_serverless.Models
 
         public DateTime DateTo { get; set; }
 
+        public int? DaysPending { get; set; }
+
         [ForeignKey("User")]
         public Guid UserId { get; set; }
 

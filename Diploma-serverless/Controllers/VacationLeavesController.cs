@@ -80,6 +80,7 @@ namespace Diploma_serverless.Controllers
             vacationLeave.Id = Guid.NewGuid();
             //alway first in pending
             vacationLeave.StatusId = Constants.VacationRequestStatus_Pending;
+            vacationLeave.DaysPending = 0;
 
             db.VacationLeaves.Add(vacationLeave);
 
