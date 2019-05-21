@@ -19,6 +19,11 @@ namespace Diploma_serverless.Models
         [ForeignKey("User")]
         public Guid UserId { get; set; }
 
+        [ForeignKey("Status")]
+        public Guid StatusId { get; set; }
+
         public virtual User User { get; set; }
+
+        public virtual VacationRequestStatus Status { get; set; }
     }
 }

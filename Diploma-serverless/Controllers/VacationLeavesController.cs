@@ -78,6 +78,8 @@ namespace Diploma_serverless.Controllers
         public async Task<IHttpActionResult> PostVacationLeave(VacationLeave vacationLeave)
         {
             vacationLeave.Id = Guid.NewGuid();
+            //alway first in pending
+            vacationLeave.StatusId = Constants.VacationRequestStatus_Pending;
 
             db.VacationLeaves.Add(vacationLeave);
 
