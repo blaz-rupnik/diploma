@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace Functions
 {
-    public static class Function1
+    public static class CheckIntegrityFunction
     {
         [FunctionName("CheckIntegrity")]
         public static async Task<IActionResult> Run(

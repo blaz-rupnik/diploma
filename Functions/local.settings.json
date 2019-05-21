@@ -2,6 +2,8 @@
   "IsEncrypted": false,
   "Values": {
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "AzureWebJobsTwilioAccountSid": "AC49d3ca6a2b57dab10f8976919efff954",
+    "AzureWebJobsTwilioAuthToken": "b656faf5679eabf51dad56f33f9e9480",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
     "MyConnectionString": "Server=tcp:blaz-diploma-server.database.windows.net,1433;Initial Catalog=Diploma-serverless20190428072207_db;Persist Security Info=False;User ID=blazr;Password=Fc-arsenal1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
   }

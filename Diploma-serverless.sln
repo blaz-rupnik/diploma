@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diploma-serverless", "Diploma-serverless\Diploma-serverless.csproj", "{195D7CBD-25AC-489B-A585-E8CBDEF4F13D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Functions", "Functions\Functions.csproj", "{1353EEE5-969E-42EA-95F5-0F80CD47239D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Functions", "Functions\Functions.csproj", "{1353EEE5-969E-42EA-95F5-0F80CD47239D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
