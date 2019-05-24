@@ -82,6 +82,16 @@ namespace Diploma_serverless.Controllers
             vacationLeave.StatusId = Constants.VacationRequestStatus_Pending;
             vacationLeave.DaysPending = 0;
 
+            var vacationLeaveCollides = db.VacationLeaves
+                .Where(x => (x.UserId == vacationLeave.UserId && vacationLeave.DateFrom >= x.DateFrom && vacationLeave.DateFrom < x.DateTo) ||
+                (x.UserId == vacationLeave.UserId && vacationLeave.DateTo >= x.DateFrom && vacationLeave.DateTo < x.DateTo))
+                .FirstOrDefault();
+
+            if(vacationLeaveCollides != null)
+            {
+                return Conflict();
+            }
+
             db.VacationLeaves.Add(vacationLeave);
 
             try
@@ -99,8 +109,8 @@ namespace Diploma_serverless.Controllers
                     throw;
                 }
             }
-
-            return CreatedAtRoute("DefaultApi", new { id = vacationLeave.Id }, vacationLeave);
+            VacationLeave vacationLeaveReturn = db.VacationLeaves.Include(y => y.User).Where(x => x.Id == vacationLeave.Id).FirstOrDefault();
+            return CreatedAtRoute("DefaultApi", new { id = vacationLeave.Id }, vacationLeaveReturn);
         }
 
         // DELETE: api/VacationLeaves/5
