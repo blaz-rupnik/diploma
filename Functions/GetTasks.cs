@@ -59,14 +59,6 @@ namespace Functions
                 conn.Close();
             }
             return JsonConvert.SerializeObject(result);
-        }
-
-        internal class TaskNotification
-        {
-            public string TaskType { get; set; }
-            public Guid EntityInstanceId { get; set; }
-            public string TaskName { get; set; }
-            public int TaskAction { get; set; }
-        }
+        }    
     }
 }
