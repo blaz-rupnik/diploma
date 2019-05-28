@@ -37,4 +37,20 @@ namespace Functions
         public VacationRequestStatus Status { get; set; }
     }
 
+    public class MonthlyGrade
+    {
+        public Guid Id { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public int Grade { get; set; }
+        public Guid UserId { get; set; }
+        public User User { get; set; }
+    }
+
+    public class MonthlyGradeSummary
+    {
+        public int Month { get; set; }
+        public double AverageGrade { get; set; }
+    }
+
 }

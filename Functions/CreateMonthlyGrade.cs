@@ -11,19 +11,18 @@ using System.Data.SqlClient;
 
 namespace Functions
 {
-    public static class CreateVacationLeave
+    public static class CreateMonthlyGrade
     {
-        [FunctionName("CreateVacationLeave")]
+        [FunctionName("CreateMonthlyGrade")]
         public static async Task<object> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req,
             ILogger log)
         {
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            VacationLeave data = JsonConvert.DeserializeObject<VacationLeave>(requestBody);
+            MonthlyGrade data = JsonConvert.DeserializeObject<MonthlyGrade>(requestBody);
             data.Id = Guid.NewGuid();
-            data.DaysPending = 0;
-            data.StatusId = Guid.Parse("39CF86C0-0E7B-4080-A684-E7E081B8FE17");
             var str = Environment.GetEnvironmentVariable("MyConnectionString");
+
             using (SqlConnection conn = new SqlConnection(str))
             {
                 conn.Open();
@@ -31,20 +30,18 @@ namespace Functions
                 SqlCommand cmd = new SqlCommand
                 {
                     Connection = conn,
-                    CommandText = "insert into VacationLeaves values(@absenceId,@dateFrom,@dateTo,@userId,@statusId,@daysPending)"
+                    CommandText = "insert into MonthlyRating values(@monthlyGradeId,@year,@month,@grade,@userId)"
                 };
                 cmd.Parameters.Add("@userId", System.Data.SqlDbType.UniqueIdentifier);
                 cmd.Parameters["@userId"].Value = data.UserId;
-                cmd.Parameters.Add("@absenceId", System.Data.SqlDbType.UniqueIdentifier);
-                cmd.Parameters["@absenceId"].Value = data.Id;
-                cmd.Parameters.Add("@dateFrom", System.Data.SqlDbType.DateTime);
-                cmd.Parameters["@dateFrom"].Value = data.DateFrom;
-                cmd.Parameters.Add("@dateTo", System.Data.SqlDbType.DateTime);
-                cmd.Parameters["@dateTo"].Value = data.DateTo;
-                cmd.Parameters.Add("@statusId", System.Data.SqlDbType.UniqueIdentifier);
-                cmd.Parameters["@statusId"].Value = data.StatusId;
-                cmd.Parameters.Add("@daysPending", System.Data.SqlDbType.Int);
-                cmd.Parameters["@daysPending"].Value = data.DaysPending;
+                cmd.Parameters.Add("@monthlyGradeId", System.Data.SqlDbType.UniqueIdentifier);
+                cmd.Parameters["@monthlyGradeId"].Value = data.Id;
+                cmd.Parameters.Add("@year", System.Data.SqlDbType.Int);
+                cmd.Parameters["@year"].Value = data.Year;
+                cmd.Parameters.Add("@month", System.Data.SqlDbType.Int);
+                cmd.Parameters["@month"].Value = data.Month;
+                cmd.Parameters.Add("@grade", System.Data.SqlDbType.Int);
+                cmd.Parameters["@grade"].Value = data.Grade;
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
