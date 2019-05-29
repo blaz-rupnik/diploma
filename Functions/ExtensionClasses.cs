@@ -49,8 +49,24 @@ namespace Functions
 
     public class MonthlyGradeSummary
     {
-        public int Month { get; set; }
+        public string Month { get; set; }
         public double AverageGrade { get; set; }
+    }
+
+    public enum Months
+    {
+        Januar = 1,
+        Februar = 2,
+        Marec = 3,
+        April = 4,
+        Maj = 5,
+        Junij = 6,
+        Julij = 7,
+        Avgust = 8,
+        September = 9,
+        Oktober = 10,
+        November = 11,
+        December = 12
     }
 
 }

@@ -41,11 +41,12 @@ namespace Functions
                     {
                         result.Add(new MonthlyGradeSummary
                         {
-                            Month = startMonth,
+                            Month = ((Months)startMonth).ToString(),
                             AverageGrade = reader.GetDouble(0)
                         });
+                        startMonth += 1;
                     }
-                    startMonth += 1;
+                    
                     
                 }
                 reader.Close();
