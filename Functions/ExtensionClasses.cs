@@ -53,6 +53,12 @@ namespace Functions
         public double AverageGrade { get; set; }
     }
 
+    public class CustomLog
+    {
+        public string Message { get; set; }
+        public DateTime TimeStamp { get; set; }
+    }
+
     public enum Months
     {
         Januar = 1,
