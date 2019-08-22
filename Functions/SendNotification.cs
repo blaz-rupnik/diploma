@@ -15,13 +15,18 @@ namespace Functions
     {
         [FunctionName("SendNotification")]
         public static void Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
-            [TwilioSms(From = "+17029048046")] out CreateMessageOptions messageOptions)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]
+            HttpRequest req, [TwilioSms(From = "+17029048046")]
+            out CreateMessageOptions messageOptions)
         {
-            messageOptions = new CreateMessageOptions(new Twilio.Types.PhoneNumber("+38631251302"));
+            messageOptions = new CreateMessageOptions
+                (new Twilio.Types.PhoneNumber("+38631251302"));
             var person = req.Query["person"].ToString();
             var dateFrom = req.Query["dateFrom"].ToString();
             var dateTo = req.Query["dateTo"].ToString();
+
+
+
             messageOptions.Body = "Uporabnik " + person + " je poslal zahtevo za letni dopust od: " + dateFrom + " do: " + dateTo 
                 + ". Prosim da jo čimprej odobrite. Čakajoče odobritve daljše od 7 dni se avtomatično zavrnejo.";
         }

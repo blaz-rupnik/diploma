@@ -9,7 +9,8 @@ namespace Functions
     public static class IncrementDaysPending
     {
         [FunctionName("IncrementDaysPending")]
-        public static void Run([TimerTrigger("0 0 5 * * *")]TimerInfo myTimer, ILogger log)
+        public static void Run([TimerTrigger("0 0 5 * * *")]
+        TimerInfo myTimer, ILogger log)
         {
             var str = Environment.GetEnvironmentVariable("MyConnectionString");
             Guid statusId = new Guid("39CF86C0-0E7B-4080-A684-E7E081B8FE17");
